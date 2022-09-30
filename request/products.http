@@ -1,0 +1,21 @@
+
+@api = http://localhost:3000/products
+GET {{api}}
+###
+POST {{api}}
+Content-Type: application/json
+
+{
+    "Radicado": "MVM-12345",
+    "Descripcion": "Test_Litos",
+    "FechaSolicitud": "2022-09-21T00:29:53.983Z",
+    "FechaRespuesta": null,
+    "IDResponsable": null,
+    "CorreoSolicitante": "carlos@gmail.com",
+    "NombreSolicitante": "Carlos",
+    "ApellidoSolicitante": "berrio",
+    "TelefonoSolicitante": "1234",
+    "NombreEmpresa": "MVM",
+    "IdTipoSolicitud": 1,
+    "IDEstado": 1
+} 
