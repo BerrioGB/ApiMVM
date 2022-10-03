@@ -1,7 +1,10 @@
 
 @api = http://localhost:3000/products
+
+###Obteniendo todas las solicitudes
 GET {{api}}
-###
+
+###Insertando Solicitud
 POST {{api}}
 Content-Type: application/json
 
@@ -19,3 +22,17 @@ Content-Type: application/json
     "IdTipoSolicitud": 1,
     "IDEstado": 1
 } 
+###Obteniendo solicitud con id
+GET {{api}}/130
+
+###Update Solicitud 
+PUT {{api}}/130
+Content-Type: application/json
+
+{
+    "FechaRespuesta": "2022-09-30T00:29:53.983Z",
+    "IDResponsable": 3,
+    "IDEstado": 2
+} 
+
+

@@ -1,21 +1,27 @@
-import { getConnection, sql } from "../database/connection"
+import { getConnection, sql, queries } from "../database"
 
-   export const getProducts = async (req,res) => {
+   export const getSolicitud = async (req,res) => {
+      try {
+         const pool = await getConnection()
+         const result = await pool.request().query(queries.getAllSolicitudes)
+         res.json(result.recordset)
+      } catch (error) {
+         res.status(500)
+         res.send(error.message)
+      }
 
-    const pool = await getConnection()
-    const result = await pool.request().query('SELECT * FROM Solicitud')
-    res.json(result.recordset)
    }
 
-   export const createNewProduct = async (req,res) => {
+   export const createNewSolicitud = async (req,res) => {
       const { Radicado, Descripcion, FechaSolicitud, FechaRespuesta, IDResponsable, CorreoSolicitante, NombreSolicitante, ApellidoSolicitante, TelefonoSolicitante, NombreEmpresa, IdTipoSolicitud, IDEstado } = req.body
       /*if (IDResponsable == null || Cargo==null || NombreResponsable==null || CorreoResponsable==null)
       {
          return res.status(400).json({msg:'Bad request. Rellene todos los campos'})
       }
       */
-      const pool = await getConnection();
 
+      try {
+      const pool = await getConnection();
       const result = await pool 
       .request()
       .input('Radicado', sql.VarChar, Radicado)
@@ -30,11 +36,49 @@ import { getConnection, sql } from "../database/connection"
       .input('NombreEmpresa', sql.VarChar, NombreEmpresa)
       .input('IdTipoSolicitud', sql.Int, IdTipoSolicitud)
       .input('IDEstado', sql.Int, IDEstado)
-      .query(
-         'INSERT INTO Solicitud (Radicado, Descripcion, FechaSolicitud, FechaRespuesta, IDResponsable, CorreoSolicitante, NombreSolicitante, ApellidoSolicitante, TelefonoSolicitante, NombreEmpresa, IdTipoSolicitud, IDEstado)  VALUES (@Radicado, @Descripcion, @FechaSolicitud, null, null, @CorreoSolicitante, @NombreSolicitante, @ApellidoSolicitante, @TelefonoSolicitante, @NombreEmpresa, @IdTipoSolicitud, @IDEstado)')
-      
+      .query(queries.createNewSolicitud)
          res.json(
             {Radicado, Descripcion, FechaSolicitud, FechaRespuesta, IDResponsable, CorreoSolicitante, NombreSolicitante, ApellidoSolicitante, TelefonoSolicitante, NombreEmpresa, IdTipoSolicitud, IDEstado} )
      console.log(result)
 
+      } catch (error) {
+         res.status(500)
+         res.send(error.message)
+      }
+      
+   }
+
+   export const getSolicitudById = async (req,res) => {
+
+      const {idsolicitud} = req.params;
+
+      const pool = await getConnection();
+      const result = await pool
+      .request()
+      .input("IDSolicitud", idsolicitud)
+      .query(queries.getSolicitudById)
+      res.send(result.recordset[0])
+
+   }
+
+   export const updateSolicitud = async (req,res) => {
+
+      const {FechaRespuesta, IDResponsable, IDEstado} = req.body
+      const {idsolicitud} = req.params;
+
+      if (FechaRespuesta == null || IDResponsable == null || IDEstado == null)
+      {
+         return res.status(400).json({msg: "Debe rellenar todos los campos"})
+      }
+
+      const pool = await getConnection();
+      await pool
+      .request()
+      .input("FechaRespuesta", sql.Date, FechaRespuesta)
+      .input("IDResponsable", sql.Int, IDResponsable)
+      .input("IDEstado", sql.Int, IDEstado)
+      .input("IDSolicitud", sql.Int, idsolicitud)
+      .query(queries.updateSolicitud)
+
+      res.json({FechaRespuesta, IDResponsable, IDEstado})
    }

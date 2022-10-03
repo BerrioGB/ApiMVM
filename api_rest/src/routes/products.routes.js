@@ -1,14 +1,14 @@
 import {Router} from 'express'
-import { createNewProduct, getProducts } from '../controllers/products.controller'
+import { createNewSolicitud, getSolicitud, getSolicitudById, updateSolicitud} from '../controllers/products.controller'
 const router = Router()
 
-router.get('/products', getProducts)
+router.get('/products', getSolicitud)
 
-router.post('/products', createNewProduct)
+router.post('/products', createNewSolicitud)
 
-router.get('/products', )
+router.get('/products/:idsolicitud', getSolicitudById)
 
-router.delete('/products', )
+router.put('/products/:idsolicitud', updateSolicitud)
 
 router.put('/products', )
 
