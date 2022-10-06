@@ -23,16 +23,16 @@ Content-Type: application/json
     "IDEstado": 1
 } 
 ###Obteniendo solicitud con id
-GET {{api}}/130
+GET {{api}}/137
 
 ###Update Solicitud 
-PUT {{api}}/130
+PUT {{api}}/137
 Content-Type: application/json
 
 {
     "FechaRespuesta": "2022-09-30T00:29:53.983Z",
     "IDResponsable": 3,
-    "IDEstado": 2
+    "IDEstado": 1
 } 
 
 

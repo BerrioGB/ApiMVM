@@ -10,6 +10,4 @@ router.get('/products/:idsolicitud', getSolicitudById)
 
 router.put('/products/:idsolicitud', updateSolicitud)
 
-router.put('/products', )
-
 export default router
