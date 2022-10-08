@@ -1,16 +1,16 @@
 
-@api = http://localhost:3000/products
+@api = http://localhost:8000/products
 
 ###Obteniendo todas las solicitudes
-GET {{api}}
+GET {{api}}/solicitudes
 
 ###Insertando Solicitud
-POST {{api}}
+POST {{api}}/create
 Content-Type: application/json
 
 {
     "Radicado": "MVM-12345",
-    "Descripcion": "Test_Litos",
+    "Descripcion": "Prueba_JuanCarlos",
     "FechaSolicitud": "2022-09-21T00:29:53.983Z",
     "FechaRespuesta": null,
     "IDResponsable": null,
@@ -22,11 +22,9 @@ Content-Type: application/json
     "IdTipoSolicitud": 1,
     "IDEstado": 1
 } 
-###Obteniendo solicitud con id
-GET {{api}}/137
 
 ###Update Solicitud 
-PUT {{api}}/137
+PUT {{api}}/update/137
 Content-Type: application/json
 
 {

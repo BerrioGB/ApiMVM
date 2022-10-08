@@ -2,12 +2,10 @@ import {Router} from 'express'
 import { createNewSolicitud, getSolicitud, getSolicitudById, updateSolicitud} from '../controllers/products.controller'
 const router = Router()
 
-router.get('/products', getSolicitud)
+router.get('/products/solicitudes', getSolicitud)
 
-router.post('/products', createNewSolicitud)
+router.post('/products/create', createNewSolicitud)
 
-router.get('/products/:idsolicitud', getSolicitudById)
-
-router.put('/products/:idsolicitud', updateSolicitud)
+router.put('/products/update/:idsolicitud', updateSolicitud)
 
 export default router
