@@ -3,11 +3,12 @@
 
 ###Obteniendo todas las solicitudes
 GET {{api}}/solicitudes
+access-control-allow-Origin: *
 
 ###Insertando Solicitud
 POST {{api}}/create
 Content-Type: application/json
-
+access-control-allow-Origin: *
 {
     "Radicado": "MVM-12345",
     "Descripcion": "Prueba_JuanCarlos",
