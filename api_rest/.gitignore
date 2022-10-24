@@ -1,5 +1,6 @@
 .env
 
+#Ignora node
 node_modules
 
 database
