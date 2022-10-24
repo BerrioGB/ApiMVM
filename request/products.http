@@ -25,13 +25,16 @@ access-control-allow-Origin: *
 } 
 
 ###Update Solicitud 
-PUT {{api}}/update/137
+PUT {{api}}/update/4
 Content-Type: application/json
-
+access-control-allow-Origin: *
 {
     "FechaRespuesta": "2022-09-30T00:29:53.983Z",
-    "IDResponsable": 3,
+    "IDResponsable": 4,
     "IDEstado": 1
 } 
+
+###Seleccionar solicitud por id
+GET {{api}}/edit/4
 
 
