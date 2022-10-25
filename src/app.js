@@ -5,7 +5,7 @@ import productsRoutes from "./routes/products.routes";
 const app = express();
 
 //configuraciones
-app.set("port", process.env.port || 8000);
+app.set("port", config.port || 8000);
 
 //middlewares
 app.use(express.json());
